@@ -1,0 +1,5 @@
+---
+title: "Redux Thunk"
+type: "article"
+description: "Implementinng asynchronous action creators in React-Redux"
+tags: "javascript, react, redux, redux-thunk"
