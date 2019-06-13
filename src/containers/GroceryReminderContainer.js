@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { startTimerWithTimeout } from '../modules/timer'
+
 class GroceryReminderContainer extends Component {
   constructor(props) {
     super(props)
@@ -9,16 +11,17 @@ class GroceryReminderContainer extends Component {
   }
 
   reminderClick() {
-    // the method that will start the timer and update state accordingly
+    this.props.startTimerWithTimeout()
   }
+
 
   render() {
     let reminderStatus
-    // Show that the timer is running once the reminder button has been clicked
+
     if (this.props.isRunning) {
       reminderStatus = <img src="https://s3.amazonaws.com/horizon-production/images/redux/loading-icon.gif" alt="loading-icon" height="42" width="42"></img>
     }
-    // When state has been updated correctly, will give an alert to the user.
+
     if (this.props.sendAlert) {
       alert("Don't forget to get some kale!")
     }
@@ -39,13 +42,14 @@ class GroceryReminderContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // we'll need to listen for the timer completing, so that we can alert the user
+    isRunning: state.timer.isRunning,
+    sendAlert: state.timer.sendAlert
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // the action creator we use in `reminderClick()` will need to be defined here.
+    startTimerWithTimeout: () => dispatch(startTimerWithTimeout())
   }
 }
 
