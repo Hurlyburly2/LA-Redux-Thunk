@@ -3,30 +3,6 @@ const initialState = {
   sendAlert: false
 }
 
-const START_TIMER = 'START_TIMER'
-const startTimer = () => {
-  return {
-    type: START_TIMER
-  }
-}
-
-const startTimerWithTimeout = () => {
-  return dispatch => {
-    dispatch(startTimer())
-    
-    return setTimeout(() => {
-      dispatch(endTimerSuccessfully())
-    }, 3000)
-  }
-}
-
-const END_TIMER_SUCCESSFULLY = 'END_TIMER_SUCCESSFULLY'
-const endTimerSuccessfully = () => {
-  return {
-    type: END_TIMER_SUCCESSFULLY
-  }
-}
-
 const timer = (state = initialState, action) => {
   switch(action.type) {
     case START_TIMER:
@@ -46,8 +22,32 @@ const timer = (state = initialState, action) => {
   }
 }
 
+const START_TIMER = 'START_TIMER'
+const startTimer = () => {
+  return {
+    type: START_TIMER
+  }
+}
+
+
+const END_TIMER_SUCCESSFULLY = 'END_TIMER_SUCCESSFULLY'
+const endTimerSuccessfully = () => {
+  return {
+    type: END_TIMER_SUCCESSFULLY
+  }
+}
+
+const startTimerWithTimeout = () => {
+  return dispatch => {
+    dispatch(startTimer())
+
+    return setTimeout(() => {
+      dispatch(endTimerSuccessfully())
+    }, 3000)
+  }
+}
+
 export {
   timer,
-  startTimer,
-  endTimerSuccessfully
+  startTimerWithTimeout
 }
