@@ -10,6 +10,16 @@ const startTimer = () => {
   }
 }
 
+const startTimerWithTimeout = () => {
+  return dispatch => {
+    dispatch(startTimer())
+    
+    return setTimeout(() => {
+      dispatch(endTimerSuccessfully())
+    }, 3000)
+  }
+}
+
 const END_TIMER_SUCCESSFULLY = 'END_TIMER_SUCCESSFULLY'
 const endTimerSuccessfully = () => {
   return {
