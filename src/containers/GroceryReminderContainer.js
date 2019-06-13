@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { startTimerWithTimeout } from '../modules/groceries'
+import { startTimerWithTimeout } from '../modules/timer'
 
 class GroceryReminderContainer extends Component {
   constructor(props) {
